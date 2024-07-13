@@ -3,7 +3,7 @@ import React from 'react'
 import brace from 'brace'
 import AceEditor from 'react-ace'
 import Frame, { FrameContextConsumer } from 'react-frame-component'
-
+import { Base64 } from 'js-base64';
 import 'brace/mode/jsx'
 import 'brace/theme/monokai'
 import ComponentRenderer from './component-renderer'
@@ -48,7 +48,7 @@ class Wrapper extends React.Component {
     })()`
     try {
       const src = Babel.transform(wrapper, { presets: ['react', 'es2015'] }).code
-      script.src = 'data:text/plain;base64,' + btoa(src)
+      script.src = 'data:text/plain;base64,' + Base64.encode(src)
     } catch (error) {
       console.log(error)
     }
